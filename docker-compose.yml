@@ -1,0 +1,12 @@
+version: '2'
+services:
+  gitweb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gausa/gitweb
+    ports:
+     - "8020:80/tcp"
+    volumes:
+     - /home/pi/git:/srv/git
+    command: sh -c "mkdir web.git; cd web.git; git init --bare; git instaweb --httpd=lighttpd -p 80 --start; sh"
